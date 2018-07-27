@@ -19,11 +19,9 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('dynamic_domain_config');
-
         $rootNode
             ->children()
-                ->arrayNode('domain_mapping')
-                    ->isRequired()
+                ->variableNode('domain_mapping')
                 ->end()
             ->end()
         ;

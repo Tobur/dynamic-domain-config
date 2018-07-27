@@ -7,6 +7,9 @@ use Symfony\Component\Yaml\Exception\ParseException;
 use Symfony\Component\Yaml\Yaml;
 use Twig_Environment as Environment;
 
+/**
+ * domain.config.resolver
+ */
 class DomainConfigResolver
 {
     /**
