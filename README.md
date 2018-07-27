@@ -16,8 +16,7 @@ dynamic_domain_config:
         database_url: 'DATABASE_URL="mysql://user:passw0rd@db:3306/db2"'
 ```
 
-Use in config:
 
-```
- database_url: "@=container.get('domain.config.resolver').getParam('database_url')"
-```
+If domain "domain.localhost"  and we have parameter
+in container with name "database_url" - Bundle will rewrite this url from
+dynamic_domain_config->domain_mapping->your domain->setting name

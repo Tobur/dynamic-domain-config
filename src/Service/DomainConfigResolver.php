@@ -31,13 +31,7 @@ class DomainConfigResolver
      */
     public function getParam(string $paramName)
     {
-        $serverName = $_SERVER['SERVER_NAME'];
-
-        if (!array_key_exists($serverName, $this->domainMapping)) {
-            throw new \LogicException(sprintf('%s server name didn\'t support', $serverName));
-        }
-
-        $serverNameParameters = $this->domainMapping[$serverName];
+        $serverNameParameters = $this->getCurrentParams();
 
         if (!array_key_exists($paramName, $serverNameParameters)) {
             throw new \LogicException(
@@ -50,5 +44,18 @@ class DomainConfigResolver
         }
 
         return $serverNameParameters[$paramName];
+    }
+
+    /**
+     * @return array
+     */
+    public function getCurrentParams(): ?array
+    {
+        $serverName = $_SERVER['SERVER_NAME'];
+        if (!array_key_exists($serverName, $this->domainMapping)) {
+            return [];
+        }
+
+        return $this->domainMapping[$serverName];
     }
 }
