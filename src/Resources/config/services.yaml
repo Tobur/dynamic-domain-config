@@ -5,5 +5,5 @@ services:
     domain.config.resolver:
       public: true
       class: DynamicDomainConfig\Service\DomainConfigResolver
-      arguments: ['%dynamic_domain_config.mapping%']
+      arguments: ['%dynamic_domain_config_mapping%']
 
