@@ -1,0 +1,8 @@
+parameters:
+  dynamic_domain_config.mapping: []
+
+services:
+    sonata.admin.generator:
+      class: DynamicDomainConfig\Service\DomainConfigResolver
+      arguments: ['%dynamic_domain_config.mapping%']
+
