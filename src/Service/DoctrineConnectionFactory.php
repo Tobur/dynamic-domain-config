@@ -51,6 +51,10 @@ class DoctrineConnectionFactory extends ConnectionFactory implements ContainerAw
     ) {
         /** @var DomainConfigResolver $resolver */
         $resolver = $this->container->get('domain.config.resolver');
+        if (!$resolver->isExistServerName()) {
+            return parent::createConnection($params, $config, $eventManager,$mappingTypes);
+        }
+
         $parameters = $resolver->getCurrentParams();
 
         foreach ($this->doctrineConnectionMapping as $key => $value) {
@@ -58,7 +62,7 @@ class DoctrineConnectionFactory extends ConnectionFactory implements ContainerAw
                 $params[$key] = $parameters[$value];
             }
         }
-        
+
         return parent::createConnection($params, $config, $eventManager,$mappingTypes);
     }
 }

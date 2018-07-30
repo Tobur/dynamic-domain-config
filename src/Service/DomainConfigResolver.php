@@ -51,11 +51,23 @@ class DomainConfigResolver
      */
     public function getCurrentParams(): ?array
     {
+        if (!$this->isExistServerName()) {
+            return [];
+        }
+
         $serverName = $_SERVER['SERVER_NAME'];
         if (!array_key_exists($serverName, $this->domainMapping)) {
             return [];
         }
 
         return $this->domainMapping[$serverName];
+    }
+
+    /**
+     * @return bool
+     */
+    public function isExistServerName(): bool
+    {
+        return isset($_SERVER['SERVER_NAME']);
     }
 }
