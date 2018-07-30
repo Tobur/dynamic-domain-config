@@ -1,9 +1,19 @@
 parameters:
   dynamic_domain_config.mapping: []
+  doctrine.dbal.connection_factory.class: DynamicDomainConfig\Service\DoctrineConnectionFactory
 
 services:
     domain.config.resolver:
       public: true
       class: DynamicDomainConfig\Service\DomainConfigResolver
       arguments: ['%dynamic_domain_config_mapping%']
-
+    doctrine.dbal.connection_factory:
+      class: '%doctrine.dbal.connection_factory.class%'
+      calls:
+        - method: 'setContainer'
+          arguments:
+            - '@service_container'
+        - method: 'setDoctrineConnectionMapping'
+          arguments:
+            - '%dynamic_domain_config_doctrine_mapping%'
+      arguments: ['%doctrine.dbal.connection_factory.types%']

@@ -18,6 +18,7 @@ class DynamicDomainConfigExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
         $container->setParameter('dynamic_domain_config_mapping', $config['domain_mapping']);
+        $container->setParameter('dynamic_domain_config_doctrine_mapping', $config['doctrine_connection']);
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yaml');
     }
