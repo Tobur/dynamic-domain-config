@@ -1,9 +1,9 @@
-Install:
+**Install:**
 ````
 composer require tobur/dynamic-domain-config
 ````
 
-Configure:
+**Configure:**
 
 ```
 dynamic_domain_config:
@@ -17,6 +17,12 @@ dynamic_domain_config:
 ```
 
 
-If domain "domain.localhost"  and we have parameter
-in container with name "database_url" - Bundle will rewrite this url from
-dynamic_domain_config->domain_mapping->your domain->setting name
+If domain "domain.localhost" and we have parameter
+in container with name "database_url" - Bundle will rewrite this url from:
+```
+domain_mapping->your domain->setting name
+```
+
+**What for you need that?** 
+
+I used this for split selenium tests in my project and run them in parallel.
