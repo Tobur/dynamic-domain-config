@@ -18,7 +18,7 @@ dynamic_domain_config:
 
 
 If domain "domain.localhost" and we have parameter
-in container with name "database_url" - Bundle will rewrite this url from:
+in container with name "database_url" - Bundle will rewrite this parameter from:
 ```
 domain_mapping->your domain->setting name
 ```
