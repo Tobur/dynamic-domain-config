@@ -1,4 +1,5 @@
 <?php
+<?php
 
 namespace DynamicDomainConfig\Service;
 
@@ -16,14 +17,13 @@ class DynamicDomainConfigHandler implements CompilerPassInterface
         /** @var DomainConfigResolver $resolver */
         $resolver = $container->get('domain.config.resolver');
 
-        foreach ($resolver->getCurrentParams() as $param) {
-            if ($container->hasParameter($param)) {
+        foreach ($resolver->getCurrentParams() as $key => $param) {
+            if ($container->hasParameter($key)) {
                 $container->setParameter(
-                    $param,
-                    $resolver->getParam($param)
+                    $key,
+                    $param
                 );
             }
         }
     }
 }
-
