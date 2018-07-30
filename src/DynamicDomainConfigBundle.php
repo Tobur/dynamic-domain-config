@@ -4,6 +4,7 @@ namespace DynamicDomainConfig;
 
 use DynamicDomainConfig\DependencyInjection\DynamicDomainConfigExtension;
 use DynamicDomainConfig\Service\DynamicDomainConfigHandler;
+use Symfony\Component\DependencyInjection\Compiler\PassConfig;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
@@ -17,7 +18,8 @@ class DynamicDomainConfigBundle extends Bundle
         parent::build($container);
 
         $container->addCompilerPass(
-            new DynamicDomainConfigHandler()
+            new DynamicDomainConfigHandler(),
+            PassConfig::TYPE_OPTIMIZE
         );
     }
 
